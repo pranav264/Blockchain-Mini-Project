@@ -1,11 +1,11 @@
 const { MongoClient } = require('mongodb');
 const uri = "mongodb://0.0.0.0:27017";
 
-async function insertDocument() {
+async function insertDocument(doc) {
   const client = new MongoClient(uri);
   await client.connect();
   const collection = client.db('bt').collection('user');
-  const res = await collection.insertOne({ a: 1, b: 2, name: 'Parth Godase' });
+  const res = await collection.insertOne(doc);
   if (res.acknowledged) {
     console.log(res.insertedId);
   } else {
