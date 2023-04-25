@@ -1,25 +1,23 @@
 const express=require('express')
 const { insertDocument } = require('./connectUser.js');
 const cors= require('cors')
+
+
 const app=express();
 
-app.listen(8800,()=>
-{
-    console.log('server is listening on prt 8800')
-})
-
-app.use(cors);
-
+app.use(cors());
+app.use(express.json())
 
 app.post("/addUser",(req,res)=>
 {
-    const q="INSERT INTO books(`title`,`desc`,`price`,`cover`) VALUES (?)"
-    const Values=[
-      req.body.title,
-      req.body.desc,
-      req.body.price,
-      req.body.cover,
-    ];
+   
+    const Values=
+      {
+        name:'Parth',
+        surname:'Godase',
+        age:'20',
+      }
+    
 
 
     async function main() {
@@ -31,6 +29,14 @@ app.post("/addUser",(req,res)=>
    
 })
 
+app.get("/",(req,res)=>
+{
+    res.send('You are connected to backend!!!!!!!!!!!!!')
+})
 
 
 
+app.listen(8100,()=>
+{
+    console.log('server is listenong on port 8100')
+})
